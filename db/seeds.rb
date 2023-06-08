@@ -17,5 +17,15 @@ Weather.create(
   temp_max: 28.3
 )
 
+Weather.create(
+  city_id: 2,
+  main: 'Rain',
+  description: 'Moderate rain',
+  icon: '10d',
+  temperature: 18.3,
+  temp_min: 15.2,
+  temp_max: 20.9
+)
+
 
 puts "✅ Done seeding!"
