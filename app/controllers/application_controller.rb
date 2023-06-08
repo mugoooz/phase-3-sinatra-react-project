@@ -16,4 +16,25 @@ class ApplicationController < Sinatra::Base
     city.to_json
   end
 
+  post "/cities" do
+    city = City.new(params)
+    if city.save
+      status 201
+      city.to_json
+    else
+      status 400
+      { error: "Invalid city data" }.to_json
+    end
+  end
+  
+  patch "/cities/:id" do
+    city = City.find(params[:id])
+    if city.update(params)
+      city.to_json
+    else
+      status 400
+      { error: "Invalid city data" }.to_json
+    end
+  end
+
 end
