@@ -65,4 +65,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  delete "/weathers/:id" do
+    weather = Weather.find(params[:id])
+    weather.destroy
+    status 204
+  end
+
 end
