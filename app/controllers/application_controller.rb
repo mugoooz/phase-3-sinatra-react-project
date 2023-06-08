@@ -6,4 +6,14 @@ class ApplicationController < Sinatra::Base
     { message: "Good luck with your project!" }.to_json
   end
 
+  get "/cities" do
+    cities = City.all
+    cities.to_json
+  end
+  
+  get "/cities/:id" do
+    city = City.find(params[:id])
+    city.to_json
+  end
+
 end
