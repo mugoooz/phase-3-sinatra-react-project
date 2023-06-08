@@ -37,4 +37,32 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  delete "/cities/:id" do
+    city = City.find(params[:id])
+    city.destroy
+    status 204
+  end
+  
+  post "/cities/:city_id/weathers" do
+    city = City.find(params[:city_id])
+    weather = city.weathers.new(params)
+    if weather.save
+      status 201
+      weather.to_json
+    else
+      status 400
+      { error: "Invalid weather data" }.to_json
+    end
+  end
+  
+  patch "/weathers/:id" do
+    weather = Weather.find(params[:id])
+    if weather.update(params)
+      weather.to_json
+    else
+      status 400
+      { error: "Invalid weather data" }.to_json
+    end
+  end
+
 end
